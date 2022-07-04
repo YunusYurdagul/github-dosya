@@ -13,7 +13,16 @@ const StorageController=(function(){
             }
             localStorage.setItem('products', JSON.stringify(products));
         },
-     
+        getProducts: function(){
+            let products;
+            if(localStorage.getItem('products')==null){
+                products=[];
+            }
+            else{
+                products= JSON.parse(localStorage.getItem('products'));
+            }
+            return products;
+        },
         updateProduct: function(product){
             let products= JSON.parse(localStorage.getItem('products'));
             products.forEach(function(prd, index){
@@ -27,7 +36,7 @@ const StorageController=(function(){
             let products= JSON.parse(localStorage.getItem('products'));
             products.forEach(function(prd, index){
                 if(id==prd.id){
-                    products.splice(index, 2);
+                    products.splice(index, 1);
                 }
             });
             localStorage.setItem('products', JSON.stringify(products));
